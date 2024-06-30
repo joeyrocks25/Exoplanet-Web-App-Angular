@@ -1,0 +1,115 @@
+<!--
+  This HTML file represents the template for the Exoplanet Search component.
+  It includes sections for entering search terms, displaying paginated search results,
+  and showing detailed information about selected exoplanets. Pagination controls are
+  also provided for navigating through the search results. Feedback messages are shown
+  to provide information or guidance to the user.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<div class="exoplanet-search">
+  <!-- Display feedback message if present -->
+  <div class="feedback-message" *ngIf="feedbackMessage">{{ feedbackMessage }}</div>
+  <!-- Search content section -->
+  <div class="search-content">
+    <h2>Exoplanet Search</h2>
+    <div class="input-container">
+      <div class="input-field-container">
+        <mat-form-field>
+          <input matInput [(ngModel)]="searchValue" id="searchValue" placeholder="Enter search term" />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" class="custom-button" (click)="searchExoplanets()">Search</button>
+    </div>
+  </div>
+
+  <!-- Display paginated search results or detailed view -->
+  <div *ngIf="!detailedView && pagedExoplanets.length > 0; else detailedViewTemplate" class="search-results">
+    <h3>Exoplanet Search Results</h3>
+    <ul>
+      <li *ngFor="let exoplanet of pagedExoplanets">
+        <div class="exoplanet-box">
+          <div class="planet-info">
+            <span>{{ exoplanet.planet_name }} - {{ exoplanet.discovery_facility }} ({{ exoplanet.discovery_year }})</span>
+          </div>
+          <!-- Action buttons for viewing and adding to a deck -->
+          <div class="action-buttons">
+            <button mat-icon-button color="primary" (click)="viewMore(exoplanet)">
+              <mat-icon style="color: white;">visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="addToDeck(exoplanet)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Template for detailed view -->
+  <ng-template #detailedViewTemplate>
+    <div class="detailed-view" *ngIf="detailedView">
+      <h3>Exoplanet Details</h3>
+      <!-- Display details of the selected exoplanet in a table -->
+      <table class="details-table">
+        <tr>
+          <td><strong>Planet name:</strong></td>
+          <td>{{ selectedExoplanet.planet_name }}</td>
+        </tr>
+        <tr>
+          <td><strong class="spacer">Host star:</strong></td>
+          <td>{{ selectedExoplanet.host_star }}</td>
+        </tr>
+        <tr>
+          <td><strong class="spacer">Number of stars in the system:</strong></td>
+          <td>{{ selectedExoplanet.number_of_stars_in_system }}</td>
+        </tr>
+        <tr>
+          <td><strong class="spacer">Number of planets in the system:</strong></td>
+          <td>{{ selectedExoplanet.number_of_planets_in_system }}</td>
+        </tr>
+        <tr>
+          <td><strong>Discovery method:</strong></td>
+          <td>{{ selectedExoplanet.discovery_method }}</td>
+        </tr>
+        <tr>
+          <td><strong>Discovery year:</strong></td>
+          <td>{{ selectedExoplanet.discovery_year }}</td>
+        </tr>
+        <tr>
+          <td><strong>Discovery facility:</strong></td>
+          <td>{{ selectedExoplanet.discovery_facility }}</td>
+        </tr>
+        <tr>
+          <td><strong>Solar system type:</strong></td>
+          <td>{{ selectedExoplanet.solar_system_type }}</td>
+        </tr>
+        <tr>
+          <td><strong>Publication date:</strong></td>
+          <td>{{ selectedExoplanet.publication_date }}</td>
+        </tr>
+        <tr>
+          <td><strong>Release date:</strong></td>
+          <td>{{ selectedExoplanet.release_date }}</td>
+        </tr>
+        <tr>
+          <td><strong>Exoplanet Classification:</strong></td>
+          <td>
+            <strong>Type:</strong> {{ selectedExoplanet.exoplanet_classification.Type }}<br>
+            <strong>Details:</strong> {{ selectedExoplanet.exoplanet_classification.Details.join(', ') }}
+          </td>
+        </tr>
+      </table>
+      <!-- Button to close the detailed view -->
+      <button mat-raised-button color="primary" (click)="closeDetailView()">Close</button>
+    </div>
+  </ng-template>
+
+  <!-- Pagination controls -->
+  <div class="pagination">
+    <button mat-raised-button color="primary" (click)="onPrevPage()" [disabled]="currentPage === 1">Previous</button>
+    <button mat-raised-button color="primary" (click)="onNextPage()" [disabled]="currentPage === calculateTotalPages()">Next</button>
+    <span>Page {{ currentPage }} of {{ calculateTotalPages() }}</span>
+  </div>
+</div>
+</html>

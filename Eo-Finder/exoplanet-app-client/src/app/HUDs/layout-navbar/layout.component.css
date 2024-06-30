@@ -1,0 +1,24 @@
+Adding this to global styles or component-specific styles
+
+.navbar {
+  height: 10px; 
+  border-bottom: 2px solid #17a2b8; 
+}
+
+.navbar-brand {
+  font-size: 1.75rem;
+  line-height: 1.5; 
+  margin-left: 10px;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-color: #fff; 
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #17a2b8; 
+}

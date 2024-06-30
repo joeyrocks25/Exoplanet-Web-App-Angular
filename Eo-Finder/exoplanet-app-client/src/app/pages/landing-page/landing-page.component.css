@@ -1,0 +1,23 @@
+.landing-page {
+  text-align: center;
+  padding: 20px;
+  height: 100vh; 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  border: 1px solid white;
+  box-sizing: border-box; 
+}
+
+.test {
+  color: #fff; 
+  border: 1px solid white; 
+  box-sizing: border-box; 
+  width: 30%;
+  margin: auto;
+}

@@ -1,0 +1,21 @@
+<!-- Home page component that uses cache service for faster image render -->
+<!-- Home page component loads our exoplanet-hud and exoplanet-search components -->
+
+<!DOCTYPE html>
+<html lang="en">
+<div [ngStyle]="getBackgroundImageStyle()" class="landing-page">
+  <div class="text-container">
+    <h1>Welcome to NASA's Exoplanet Finder, {{ username }}!</h1>
+    <p>Discover and explore exoplanets beyond our solar system!</p>
+  </div>
+</div>
+
+<div class="exoplanet-hud">
+  <app-exoplanet-hud (deckCreated)="createNewDeck($event)"></app-exoplanet-hud>
+</div>
+
+<div class="exoplanet-search">
+  <app-exoplanet-search (exoplanetSearchResults)="updateExoplanets($event)"></app-exoplanet-search>
+</div>
+
+</html>

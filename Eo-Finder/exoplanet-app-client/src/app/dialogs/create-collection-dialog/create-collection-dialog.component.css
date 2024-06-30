@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.container {
+  width: 400px; 
+  padding: 20px;
+  overflow: hidden; 
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px; 
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -10px;
+}

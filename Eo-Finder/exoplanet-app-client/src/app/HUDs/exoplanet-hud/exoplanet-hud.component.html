@@ -1,0 +1,55 @@
+<!-- 
+  This Angular component represents the user interface for managing revision collections.
+  It includes a title, a search box for filtering collections, a list of decks with selection and action buttons,
+  and pagination controls for navigating through the displayed decks.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<div class="exoplanet-hud">
+  <!-- Title and add icon -->
+  <div class="title-container">
+    <h2>Revision Collections</h2>
+    <div class="custom-icon" (click)="onPlusIconClick()">
+      <mat-icon>add</mat-icon>
+    </div>
+  </div>
+
+  <!-- Search box for collection name -->
+  <mat-form-field class="search-box">
+    <input matInput [(ngModel)]="deckFilter" placeholder="Search filter" (input)="filterOnTheFly()" />
+  </mat-form-field>
+
+  <!-- Box for displaying decks -->
+  <div class="deck-container">
+    <h3>Your Revision Collections:</h3>
+
+    <ul>
+      <!-- Display each deck with selection and action buttons -->
+      <li *ngFor="let deck of pagedDecks">
+        <div class="deck-box" [class.selected]="deck === selectedDeck" (click)="selectDeck(deck)">
+          <div class="user-info">
+            <span>{{ deck.name }}</span>
+          </div>
+          <div class="action-buttons">
+            <button mat-icon-button color="warn" (click)="logButtonClick('delete', deck.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="logButtonClick('view', deck.id)">
+              <mat-icon style="color: white;">visibility</mat-icon>
+            </button>            
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Pagination controls -->
+  <div class="pagination">
+    <button mat-raised-button color="primary" (click)="onPrevPage()" [disabled]="currentPage === 1">Previous</button>
+    <button mat-raised-button color="primary" (click)="onNextPage()" [disabled]="currentPage === calculateTotalPages()">Next</button>
+    <span>Page {{ currentPage }} of {{ calculateTotalPages() }}</span>
+  </div>
+</div>
+</html>

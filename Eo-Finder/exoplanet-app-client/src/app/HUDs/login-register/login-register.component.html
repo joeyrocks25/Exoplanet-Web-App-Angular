@@ -1,0 +1,64 @@
+<!-- 
+  This component represents the login and registration form for the Nasa Exoplanet Finder application.
+  Users can either log in or register based on the selected mode and includes validation.
+-->
+<!DOCTYPE html>
+<div class="login-register-box">
+  <div class="content-container">
+    <div class="button-container">
+      <h1>Welcome to Nasa Exoplanet Finder</h1>
+      <p>Discover and explore exoplanets beyond our solar system!</p>
+      <button [class.active]="mode === 'login'" (click)="toggleMode('login')">Login</button>
+      <button [class.active]="mode === 'register'" (click)="toggleMode('register')">Register</button>
+    </div>
+
+    <h2>{{ mode === 'login' ? 'Login' : 'Register' }}</h2>
+
+    <!-- Login form -->
+    <form *ngIf="mode === 'login'; else registerContent" class="login-form" [formGroup]="loginForm">
+      <mat-form-field>
+        <mat-label>Username:</mat-label>
+        <input matInput type="text" id="username" name="username" formControlName="username">
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">Username is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password:</mat-label>
+        <input matInput type="password" id="password" name="password" formControlName="password">
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">Password is required</mat-error>
+      </mat-form-field>
+      <button type="button" (click)="login()" class="action-button" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <!-- Registration form -->
+    <ng-template #registerContent>
+      <form class="register-form" [formGroup]="registerForm">
+        <mat-form-field>
+          <mat-label>Username:</mat-label>
+          <input matInput type="text" id="newUsername" name="newUsername" formControlName="newUsername">
+          <mat-error *ngIf="registerForm.get('newUsername')?.hasError('required') && registerForm.get('newUsername')?.touched">Username is required</mat-error>
+          <mat-error *ngIf="registerForm.get('newUsername')?.hasError('minlength') && registerForm.get('newUsername')?.touched">Username must be at least 3 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password:</mat-label>
+          <input matInput type="password" id="newPassword" name="newPassword" formControlName="newPassword">
+          <mat-error *ngIf="registerForm.get('newPassword')?.hasError('required') && registerForm.get('newPassword')?.touched">Password is required</mat-error>
+          <mat-error *ngIf="registerForm.get('newPassword')?.hasError('minlength') && registerForm.get('newPassword')?.touched">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email:</mat-label>
+          <input matInput type="email" id="newEmail" name="newEmail" formControlName="newEmail">
+          <mat-error *ngIf="registerForm.get('newEmail')?.hasError('required') && registerForm.get('newEmail')?.touched">Email is required</mat-error>
+          <mat-error *ngIf="registerForm.get('newEmail')?.hasError('email') && registerForm.get('newEmail')?.touched">Invalid email format</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Date of Birth:</mat-label>
+          <input matInput type="text" id="dob" name="dob" formControlName="dob" (input)="formatDate($event)">
+          <mat-error *ngIf="registerForm.get('dob')?.hasError('required') && registerForm.get('dob')?.touched">Date of Birth is required</mat-error>
+          <mat-error *ngIf="registerForm.get('dob')?.hasError('invalidDateFormat') && registerForm.get('dob')?.touched">Invalid date format (DD/MM/YYYY)</mat-error>
+        </mat-form-field>
+        <button type="button" (click)="register()" class="action-button" [disabled]="registerForm.invalid">Register</button>
+      </form>
+    </ng-template>
+
+  </div>
+</div>

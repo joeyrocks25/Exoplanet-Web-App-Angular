@@ -1,0 +1,26 @@
+<!-- 
+  This HTML file represents the user interface for generating and answering random questions related to planets. It includes buttons to generate questions, input boxes for user answers, a button to submit answers, and a display for the user's score.
+-->
+
+<!DOCTYPE html>
+<div class="hud-container">
+  <h2 class="hud-title">Generate Questions</h2>
+  <div class="button-container">
+    <button class="answer-button" (click)="onGenerateQuestionsClick()">Generate Random Questions</button>
+  </div>
+
+  <!-- Display questions and input boxes -->
+  <div class="question-container" *ngFor="let qa of questionsAndAnswers">
+    <p class="question">{{ qa.question }}</p>
+    <input class="answer-input" [(ngModel)]="qa.userAnswer" placeholder="Your answer" />
+  </div>
+
+  <!-- Button to answer questions -->
+  <div class="button-container-2" *ngIf="questionsAndAnswers.length > 0">
+    <button class="answer-button" (click)="onAnswerQuestionsClick()">Submit Answers</button>
+  </div>
+
+  <!-- Display score -->
+  <p class="score-container" *ngIf="score !== null && questionsAndAnswers.length > 0">Score: {{ score }} / {{ questionsAndAnswers.length }}</p>
+
+</div>

@@ -1,0 +1,41 @@
+<!-- 
+  This HTML file represents the template for the Planets HUD component.
+  It includes the display of a list of planets with summary and details sections,
+  as well as buttons for viewing more details and deleting planets.
+-->
+
+<!DOCTYPE html>
+<div class="hud-container">
+  <h2 class="hud-title">My Planets</h2>
+
+  <div *ngIf="planets.length > 0" class="planet-container">
+    <div *ngFor="let planet of planets" class="planet-box" (click)="selectPlanet(planet)" [ngClass]="{'selected-planet': selectedPlanet === planet}">
+      <!-- Planet Summary -->
+      <div class="planet-summary" (click)="toggleDetails(planet)">
+        <strong>Planet name:</strong> {{ planet.planet_name }}<br>
+        <strong>Host star:</strong> {{ planet.host_star }}<br>
+        <strong>Number of stars in the system:</strong> {{ planet.number_of_stars_in_system }}<br>
+        <strong>Number of planets in the system:</strong> {{ planet.number_of_planets_in_system }}<br>
+      </div>
+
+      <!-- Planet Details -->
+      <div *ngIf="planet.showDetails" class="planet-details">
+        <strong>Discovery method:</strong> {{ planet.discovery_method }}<br>
+        <strong>Discovery year:</strong> {{ planet.discovery_year }}<br>
+        <strong>Discovery facility:</strong> {{ planet.discovery_facility }}<br>
+        <strong>Solar system type:</strong> {{ planet.solar_system_type }}<br>
+        <strong>Publication date:</strong> {{ planet.publication_date }}<br>
+        <strong>Release date:</strong> {{ planet.release_date }}<br>
+        <strong>Exoplanet Classification:</strong><br>
+        <span>Type: {{ planet.exoplanet_classification.Type }}</span><br>
+        <span>Details: {{ planet.exoplanet_classification.Details.join(', ') }}</span>
+      </div>
+
+      <!-- Buttons Section (add/delete) -->
+      <div class="buttons-section">
+        <button mat-raised-button color="primary" (click)="toggleDetails(planet)" class="full-width-button">View More Details</button>
+        <button mat-raised-button color="warn" (click)="logDelete(planet)" class="full-width-button">Delete Planet</button>
+      </div>
+    </div>
+  </div>
+</div>

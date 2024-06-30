@@ -1,0 +1,86 @@
+.hud-container {
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 824px;
+  background-color: rgba(44, 62, 80, 0.7);
+  border: 1px solid white;
+  box-sizing: border-box; 
+}
+
+.hud-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.planet-container {
+  max-height: 700px;
+  width: 100%;
+  overflow-y: auto;
+  margin: 0;
+  margin-left: -10px;
+}
+
+.planet-box {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 5px;
+  color: white;
+}
+
+.add-comment-icon {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.planet-summary {
+  max-height: 120px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  margin-bottom: 10px;
+}
+
+.planet-details {
+  overflow-y: auto;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  margin-top: -1px; 
+  padding-bottom: 10px; 
+}
+
+.planet-box:hover .planet-summary {
+  max-height: 100px;
+}
+
+.comment-box {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.buttons-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.full-width-button {
+  width: 100%;
+  margin-right: 10px;
+}
+
+.selected-planet {
+  border: 5px solid #ffcc00;
+  box-shadow: 0 0 5px #e6ff03; 
+}
+

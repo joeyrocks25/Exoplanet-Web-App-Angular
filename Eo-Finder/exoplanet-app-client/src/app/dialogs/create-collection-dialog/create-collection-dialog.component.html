@@ -1,0 +1,19 @@
+<!-- create-collection-dialog.component.html -->
+<!-- This template represents the HTML structure for the Create Collection dialog. -->
+
+fee
+
+<!DOCTYPE html>
+<html lang="en">
+<h1>Create a Collection</h1>
+
+<form [formGroup]="collectionForm">
+  <mat-form-field>
+    <input matInput placeholder="Enter collection name" formControlName="collectionName">
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="createDeck()">Create Collection</button>
+  </div>
+</form>

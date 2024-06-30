@@ -1,0 +1,47 @@
+<!-- 
+  This HTML file represents the template for the Planet Comments component.
+  It includes the display of existing comments, an option to add new comments,
+  and functionality for editing and deleting comments associated with selected planet.
+-->
+
+<!DOCTYPE html>
+<div class="comment-container">
+  <h2 class="hud-title">Comments for Planet</h2>
+
+  <!-- Add Comment Button -->
+  <button mat-fab color="primary" (click)="toggleCommentBox()" [class.clicked]="showCommentBox">
+    <mat-icon>add_comment</mat-icon>
+  </button>
+
+  <!-- Display Comments -->
+  <div *ngFor="let comment of comments; let i = index" class="comment">
+    <ng-container *ngIf="!isEditing || editCommentIndex !== i; else editMode">
+      {{ comment.content }}
+    </ng-container>
+    <ng-template #editMode>
+      <input [(ngModel)]="comments[i].content" />
+      <button mat-icon-button color="accent" (click)="updateComment(i, comment)">
+        <mat-icon>done</mat-icon>
+      </button>
+    </ng-template>
+
+    <!-- Edit and Delete Buttons -->
+    <div class="comment-buttons">
+      <button mat-icon-button color="accent" (click)="editComment(i, comment)">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" (click)="deleteComment(comment.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Comment Input Box -->
+  <div *ngIf="showCommentBox" class="comment-box" [class.active]="showCommentBox" #commentBox>
+    <textarea rows="4" cols="50" placeholder="Type your comment here..." [(ngModel)]="newComment"></textarea>
+    <div class="add-comment">
+      <button mat-raised-button color="primary" (click)="addComment()">Add Comment</button>
+    </div>
+  </div>
+</div>

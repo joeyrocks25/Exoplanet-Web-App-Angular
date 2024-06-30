@@ -1,0 +1,85 @@
+.comment-container {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  height: 825px;
+  margin: 20px auto;
+  text-align: center;
+  margin-top: 845px;
+  background-color: rgba(44, 62, 80, 0.7);
+  border: 1px solid white;
+  box-sizing: border-box; 
+  max-height: 845px; 
+  overflow-y: auto;
+}
+
+.hud-title {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.comment {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+  max-height: 150px; 
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-buttons {
+  display: flex;
+}
+
+.comment button.mat-icon-button {
+  margin-top: 0; 
+}
+
+.comment button.mat-icon-button:last-child {
+  margin-left: auto; 
+}
+
+.comment textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 80px;
+  box-sizing: border-box;
+}
+
+.comment button {
+  margin-top: 10px;
+}
+
+.comment-box {
+  margin-bottom: 50px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+button.mat-fab {
+  margin-top: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.comment-box.active {
+  opacity: 1;
+  width: 100%;
+  height: auto;
+}
+
+button.mat-fab.clicked {
+  transform: rotate(45deg);
+}
+
+.add-comment {
+  margin-top: 10px;
+}
