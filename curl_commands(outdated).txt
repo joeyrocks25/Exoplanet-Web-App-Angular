@@ -1,0 +1,96 @@
+******************** USERS ***************************
+- Register a user
+curl -X POST -H "Content-Type: application/json" -d '{"username": "your_username", "password": "your_password"}' http://localhost:5000/auth/v1.0/register
+
+- login 
+curl -X POST -H "Content-Type: application/json" -d '{"username": "your_username", "password": "your_password"}' http://localhost:5000/auth/v1.0/login
+
+- Get a user and associated data
+curl -X GET -H "Authorization: Bearer <jwt-token>" http://localhost:5000/auth/v1.0/user
+
+- logout
+curl -X POST -H "Authorization: Bearer <jwt-token>" http://localhost:5000/auth/v1.0/logout
+
+- update
+curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer <jwt-token>" -d '{"new_password": "new_password_here"}' http://localhost:5000/auth/v1.0/user/update
+
+- Delete
+curl -X DELETE -H "Authorization: Bearer <jwt-token>" http://localhost:5000/auth/v1.0/user/delete
+
+
+Compress-Archive -Path * -DestinationPath backend_server.zip
+
+************** Exoplanets **********************
+- Retrieve all exoplanets from database
+curl -X GET http://localhost:5000/collections/v1.0/exoplanets
+
+- Retrieve specific exoplanet by speciifc planet name
+curl -X GET http://localhost:5000/collections/v1.0/exoplanets/xi%20Aql%20b
+
+- Generic search for given value across all exoplanets
+curl -X GET http://localhost:5000/collections/v1.0/exoplanets/search?search_value=xi
+
+
+**************** DECKS *************************
+- Create a deck for current user
+curl -X POST http://localhost:5000/api/v1.0/deck -H "Content-Type: application/json" -H "Authorization: Bearer <jwt token>" -d "{\"deck_name\":\"YourDeckName\"}"
+
+- Get details of a specific deck by deck id and jwt
+curl -X GET http://localhost:5000/api/deck/<deck id> -H "Authorization: Bearer <jwt token>"
+
+- Delete a users deck
+curl -X DELETE http://localhost:5000/api/deck/<deck id> -H "Authorization: Bearer <jwt token>" 
+
+
+*************** Planets ************************
+- adds planet to user deck
+curl -X POST "http://localhost:5000/api/v1.0/deck/<deck id>/planet" -H "Content-Type: application/json" -H "Authorization: Bearer <jwt token>" -d "{\"planet_name\": \"Earth\", \"planet_description\": \"The third planet from the Sun\"}"
+
+- Delete planet from deck
+curl -X DELETE -H "Authorization: Bearer <jwt token>" -H "Content-Type: application/json" http://localhost:5000/api/deck/<deck id>/planet/<planet id>
+
+
+************** Comments *************************
+- Create a comment associated with a saved planet
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer <jwt token>" -d "{\"comments\": [\"This is a new comment\"]}" http://localhost:5000/api/deck/<deck id>/planet/<planet id>/comments
+
+- Get comments associated with a saved planet
+curl -X GET -H "Authorization: Bearer <jwt token>" http://localhost:5000/api/deck/<deck id>/planet/<planet id>/comments
+
+- update comment
+curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer <jwt token>" -d "{\"content\": \"Updated comment content2\"}" http://localhost:5000/api/deck/<deck id>/planet/<planet id>/comments/<comment id>
+
+- delete comment
+curl -X DELETE -H "Content-Type: application/json" -H "Authorization: Bearer <jwt token>" http://localhost:5000/api/deck/<deck id>/planet/<planet id>/comments/<comment id>
+
+
+******************* Random question *******************
+- get random question
+curl -X GET -H "Authorization: Bearer <jwt-token>" http://localhost:5000/api/deck/random-question/<deck id>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+venv -
+
+PS C:\Users\kpfb2\repositories\ExoplanetApp\BackendServer> python -m venv venv
+PS C:\Users\kpfb2\repositories\ExoplanetApp\BackendServer> .\venv\Scripts\activate
+(venv) PS C:\Users\kpfb2\repositories\ExoplanetApp\BackendServer> pip install Flask==2.0.0
+[notice] To update, run: python.exe -m pip install --upgrade pip
+(venv) PS C:\Users\kpfb2\repositories\ExoplanetApp\BackendServer> pip install Werkzeug==2.0.0       
+
+
+frontend - 
+ng add @angular/material

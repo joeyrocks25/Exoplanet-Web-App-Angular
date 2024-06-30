@@ -1,0 +1,16 @@
+Windows
+I've left a virtual env in my submission, so you can activate it and use it if you have any compatibility issues:
+
+activate virtual env                               - .\test\Scripts\activate
+now can run our server                             - python .\app.py
+
+if for any reason that does not work, feel free to remove my virtual env:
+
+deactivate test virtual env                        - deactivate
+remove the virtual env                             - rm -r .\test
+
+Recreate virtual env:
+
+Create virtual env (windows)                       - python -m venv test
+activate virtual env                               - .\test\Scripts\activate
+install requirements file to virtual env           - pip install -r requirements.txt
